@@ -9,8 +9,13 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'http://192.168.177.134:3000',
-  mode: 'development',
+  envDir: "env",
+  // mode: 'development',
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: true,
+  },
   plugins: [
     vue(),
     AutoImport({
