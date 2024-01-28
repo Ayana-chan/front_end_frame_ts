@@ -15,6 +15,7 @@ const test_env = () => {
 };
 
 const test_axios = () => {
+  console.log('start test_axios');
   const param = {
     content: 'abceeee',
   };
@@ -39,6 +40,15 @@ const test_axios = () => {
   <el-button type="warning" size="default" @click="test_axios"
     >Test axios</el-button
   >
+  <div class="image-example"><WrappedImage></WrappedImage></div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.image-example {
+  border: 0.2rem solid #a459c7;
+  width: 15rem;
+  height: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

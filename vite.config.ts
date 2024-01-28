@@ -9,7 +9,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  envDir: "env",
+  envDir: 'env',
   // mode: 'development',
   server: {
     host: '0.0.0.0',
@@ -24,7 +24,7 @@ export default defineConfig({
       imports: ['vue', 'vue-router', 'pinia'],
     }),
     Components({
-      // dirs: ['src/components'], // 按需加载的文件夹
+      dirs: ['src/components'], // folders to be loaded on demand
       resolvers: [ElementPlusResolver()],
     }),
   ],
