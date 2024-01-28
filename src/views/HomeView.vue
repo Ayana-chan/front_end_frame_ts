@@ -9,8 +9,11 @@ const { count } = storeToRefs(counterStore);
 const increment = counterStore.increment;
 
 const test_env = () => {
-  console.log('import.meta.env.VITE_API_DOMAIN', import.meta.env.VITE_API_DOMAIN);
-  console.log('import.meta.env.BASE_URL', import.meta.env.BASE_URL);
+  console.log(
+    'import.meta.env.VITE_API_DOMAIN',
+    import.meta.env.VITE_API_DOMAIN
+  );
+  console.debug('import.meta.env.BASE_URL', import.meta.env.BASE_URL);
 };
 </script>
 
