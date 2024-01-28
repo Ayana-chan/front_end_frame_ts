@@ -6,8 +6,10 @@ const httpRequest = new HttpRequest({
   interceptors: {
     requestInterceptors(config) {
       // console.log('add token to head');
-      config.headers.Authorization =
-        'Bearer ' + String(window.localStorage.getItem('token'));
+      const token = window.localStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = String(token);
+      }
       return config;
     },
   },

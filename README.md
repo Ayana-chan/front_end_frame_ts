@@ -8,3 +8,4 @@ With:
 - Element Plus
 - wrapped Axios
 - Auto-import, environment variables, etc
+- enough examples

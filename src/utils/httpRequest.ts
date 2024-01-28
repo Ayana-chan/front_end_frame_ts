@@ -67,7 +67,7 @@ export class HttpRequest {
   }
 
   /**
-   * create a axios request with optional interceptors
+   * Create an axios request with optional interceptors
    * @param config axios config with optional interceptors
    */
   request<R>(config: AxiosRequestConfig): Promise<R> {
