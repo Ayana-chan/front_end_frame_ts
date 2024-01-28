@@ -22,10 +22,12 @@ export default defineConfig({
       dirs: ['./src/stores/modules'],
       resolvers: [ElementPlusResolver()],
       imports: ['vue', 'vue-router', 'pinia'],
+      dts: './auto-imports.d.ts', // path to save dts
     }),
     Components({
       dirs: ['src/components'], // folders to be loaded on demand
       resolvers: [ElementPlusResolver()],
+      dts: './components.d.ts', // path to save dts
     }),
   ],
   resolve: {
