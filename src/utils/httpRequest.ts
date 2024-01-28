@@ -22,6 +22,9 @@ export interface RequestConfig extends AxiosRequestConfig {
   interceptors?: InterceptorsArgs;
 }
 
+/**
+ * Interceptors order: local req -> instance req -> global req -> global res -> instance res -> local res
+ */
 export class HttpRequest {
   // axios 实例
   instance: AxiosInstance;

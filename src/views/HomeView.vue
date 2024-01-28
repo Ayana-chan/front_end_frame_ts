@@ -2,9 +2,6 @@
 import { useCounterStore } from '@/stores/counter';
 import ExampleApi from '@/api/example';
 
-// TODO: 后端统一返回的数据类型
-// TODO: Api封装请求
-
 const counterStore = useCounterStore();
 const { count } = storeToRefs(counterStore);
 const increment = counterStore.increment;
@@ -18,7 +15,10 @@ const test_env = () => {
 };
 
 const test_axios = () => {
-  ExampleApi.exampleRequest('abceeee')
+  const param = {
+    content: 'abceeee',
+  };
+  ExampleApi.exampleRequest(param)
     .then((res) => {
       console.log('example res', res);
     })
@@ -36,7 +36,9 @@ const test_axios = () => {
   <br />
   <el-button type="info" size="default" @click="test_env">Test env</el-button>
   <br />
-  <el-button type="warning" size="default" @click="test_axios">Test axios</el-button>
+  <el-button type="warning" size="default" @click="test_axios"
+    >Test axios</el-button
+  >
 </template>
 
 <style scoped></style>
