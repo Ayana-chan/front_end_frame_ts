@@ -5,7 +5,7 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-//TODO: 错误发生之后，只有global能被执行，其他都没用
+
 export interface InterceptorsArgs {
   requestInterceptors?: (
     config: InternalAxiosRequestConfig
@@ -23,7 +23,7 @@ export interface RequestConfig extends AxiosRequestConfig {
 }
 
 /**
- * Interceptors order: local req -> instance req -> global req -> global res -> instance res -> local res
+ * Interceptors order: instance req -> global req -> global res -> instance res
  */
 export class HttpRequest {
   // axios 实例
@@ -38,7 +38,7 @@ export class HttpRequest {
     // global req
     this.instance.interceptors.request.use(
       (res: InternalAxiosRequestConfig) => {
-        console.log('Global Request Interceptor');
+        // console.log('Global Request Interceptor');
         return res;
       },
       (err: any) => err
@@ -59,7 +59,7 @@ export class HttpRequest {
     // global res
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
-        console.log('Global Response Interceptor');
+        // console.log('Global Response Interceptor');
         return res;
       },
       (err: any) => err
@@ -70,7 +70,7 @@ export class HttpRequest {
    * create a axios request with optional interceptors
    * @param config axios config with optional interceptors
    */
-  request<R>(config: RequestConfig): Promise<R> {
+  request<R>(config: AxiosRequestConfig): Promise<R> {
     // warn when GET request with `data`
     const { method = 'GET' } = config;
     if (method === 'get' || method === 'GET') {
@@ -79,25 +79,7 @@ export class HttpRequest {
       }
     }
 
-    return new Promise((resolve, reject) => {
-      // local request interceptor
-      if (config.interceptors?.requestInterceptors) {
-        let internalConfig = config as InternalAxiosRequestConfig;
-        config = config.interceptors.requestInterceptors(internalConfig);
-      }
-      this.instance
-        .request<any, R>(config)
-        .then((res) => {
-          // local response interceptor
-          if (config.interceptors?.responseInterceptors) {
-            res = config.interceptors.responseInterceptors<R>(res);
-          }
-          resolve(res);
-        })
-        .catch((err: any) => {
-          reject(err);
-        });
-    });
+    return this.instance.request<any, R>(config);
   }
 }
 

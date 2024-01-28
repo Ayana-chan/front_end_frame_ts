@@ -6,16 +6,6 @@ export default class ExampleApi {
       url: '/api/exmaple',
       method: 'GET',
       params: param,
-      interceptors: {
-        requestInterceptors(config) {
-          console.log('Local Request Interceptor');
-          return config;
-        },
-        responseInterceptors(err) {
-          console.log('Local Response Interceptor');
-          return err;
-        },
-      },
     });
   }
 }

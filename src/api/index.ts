@@ -5,7 +5,7 @@ const httpRequest = new HttpRequest({
   timeout: import.meta.env.VITE_API_TIME_OUT,
   interceptors: {
     requestInterceptors(config) {
-      console.log('add token to head');
+      // console.log('add token to head');
       config.headers.Authorization =
         'Bearer ' + String(window.localStorage.getItem('token'));
       return config;
