@@ -1,1 +1,10 @@
-# front_end_frame_ts
+# Introduction
+
+Quick-start of a **Vue3** project.
+
+With:
+- strict TypeScript
+- Pinia
+- Element Plus
+- wrapped Axios
+- Auto-import, environment variables, etc
