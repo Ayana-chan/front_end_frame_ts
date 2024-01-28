@@ -1,4 +1,3 @@
-import type { InternalAxiosRequestConfig } from 'axios';
 import { HttpRequest } from '../utils/httpRequest';
 
 const httpRequest = new HttpRequest({

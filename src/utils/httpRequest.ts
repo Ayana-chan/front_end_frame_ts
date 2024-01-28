@@ -5,7 +5,7 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-
+//TODO: 错误发生之后，只有global能被执行，其他都没用
 export interface InterceptorsArgs {
   requestInterceptors?: (
     config: InternalAxiosRequestConfig
