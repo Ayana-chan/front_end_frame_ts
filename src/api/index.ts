@@ -6,7 +6,7 @@ const httpRequest = new HttpRequest({
   interceptors: {
     requestInterceptors(config) {
       // console.log('add token to head');
-      const token = window.localStorage.getItem('token');
+      const token = 'Bearer ' + window.localStorage.getItem('token');
       if (token) {
         config.headers.Authorization = String(token);
       }
