@@ -62,7 +62,10 @@ export class HttpRequest {
         // console.log('Global Response Interceptor');
         return res;
       },
-      (err: any) => err
+      (err: any) => {
+        // console.log('Global Response Interceptor catch Error');
+        return Promise.reject(err);
+      }
     );
   }
 
