@@ -6,6 +6,12 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios';
 
+export interface IAxiosResponse<T = any> {
+  code: number;
+  message: string;
+  data: T;
+}
+
 export interface InterceptorsArgs {
   requestInterceptors?: (
     config: InternalAxiosRequestConfig
@@ -73,7 +79,7 @@ export class HttpRequest {
    * Create an axios request with optional interceptors
    * @param config axios config with optional interceptors
    */
-  request<R>(config: AxiosRequestConfig): Promise<R> {
+  request<D>(config: AxiosRequestConfig): Promise<IAxiosResponse<D>> {
     // warn when GET request with `data`
     const { method = 'GET' } = config;
     if (method === 'get' || method === 'GET') {
@@ -82,12 +88,7 @@ export class HttpRequest {
       }
     }
 
-    return this.instance.request<any, R>(config);
+    return this.instance.request<any, IAxiosResponse<D>>(config);
   }
 }
 
-export interface StandardResponse<T> {
-  code: number;
-  message: string;
-  data: T;
-}
