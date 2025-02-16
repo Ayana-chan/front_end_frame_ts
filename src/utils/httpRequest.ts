@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import type {
   AxiosInstance,
   AxiosRequestConfig,
@@ -6,9 +6,20 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-export interface IAxiosResponse<T = any> {
-  code: number;
+/**
+ * Standard response type of IAxiosResponse.data
+ */
+export interface StandardResponse<T> {
+  code: string;
   message: string;
+  data: T;
+}
+
+/**
+ * Type returned by axios
+ */
+export interface IAxiosResponse<T = any> {
+  status: number;
   data: T;
 }
 
@@ -68,7 +79,7 @@ export class HttpRequest {
         // console.log('Global Response Interceptor');
         return res;
       },
-      (err: any) => {
+      (err: AxiosError) => {
         // console.log('Global Response Interceptor catch Error');
         return Promise.reject(err);
       }
@@ -79,7 +90,7 @@ export class HttpRequest {
    * Create an axios request with optional interceptors
    * @param config axios config with optional interceptors
    */
-  request<D>(config: AxiosRequestConfig): Promise<IAxiosResponse<D>> {
+  request<T>(config: AxiosRequestConfig) {
     // warn when GET request with `data`
     const { method = 'GET' } = config;
     if (method === 'get' || method === 'GET') {
@@ -88,7 +99,6 @@ export class HttpRequest {
       }
     }
 
-    return this.instance.request<any, IAxiosResponse<D>>(config);
+    return this.instance.request<any, IAxiosResponse<T>>(config);
   }
 }
-

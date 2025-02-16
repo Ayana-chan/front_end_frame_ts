@@ -9,4 +9,4 @@ With:
 - Element Plus (with Icon)
 - wrapped Axios
 - Auto-import, environment variables, etc
-- enough examples
+- some examples
