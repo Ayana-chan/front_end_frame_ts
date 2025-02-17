@@ -1,7 +1,9 @@
 import { HttpRequest } from '../utils/httpRequest';
 
+const configApiUrl: string | null = window.APP_CONFIG?.API_URL;
+
 const httpRequest = new HttpRequest({
-  baseURL: import.meta.env.VITE_API_DOMAIN,
+  baseURL: configApiUrl || import.meta.env.VITE_API_DOMAIN,
   timeout: import.meta.env.VITE_API_TIME_OUT,
   interceptors: {
     requestInterceptors(config) {
